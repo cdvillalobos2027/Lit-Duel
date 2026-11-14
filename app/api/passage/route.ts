@@ -14,7 +14,6 @@ WHERE p.id = 1`;
 
 if (rows.length === 0) {
     return Response.json({ error: 'not found'}, { status: 404})
-
 }
 
 const questions = new Map();         
