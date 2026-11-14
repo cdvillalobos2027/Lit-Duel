@@ -59,3 +59,6 @@ CREATE TABLE IF NOT EXISTS player_answers (
     choice_id INTEGER NOT NULL REFERENCES answer_choices(id),
     UNIQUE (match_id, player_id, question_id)
 );
+
+
+
