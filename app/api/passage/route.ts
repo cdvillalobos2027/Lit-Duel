@@ -1,6 +1,9 @@
 import { sql } from '@/lib/db';                 
 
-export async function GET() {                   
+export async function GET(request: Request) { 
+  const id = new URL(request.url).searchParams.get('id') ?? 1;  
+    
+
   const rows = await sql`SELECT p.content AS passage,
 q.content AS question,
 q.id AS question_id,
@@ -9,7 +12,7 @@ ac.id AS choice_id
 FROM passages p
 JOIN questions q ON p.id = q.passage_id
 JOIN answer_choices ac ON q.id = ac.question_id
-WHERE p.id = 1`;
+WHERE p.id = ${id}`;
 
 
 if (rows.length === 0) {

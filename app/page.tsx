@@ -34,9 +34,9 @@ export default function Home() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ player1_id: p1.id, player2_id: p2.id }),
     });
-    setMatch(await r3.json());
-
-    const r4 = await fetch('/api/passage');
+    const m = await r3.json();
+    setMatch(m);
+    const r4 = await fetch(`/api/passage?id=${m.passage_id}`);
     setPassage(await r4.json());
   }
 
