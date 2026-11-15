@@ -17,7 +17,8 @@ export async function POST(request: Request)
   catch (err: any) {
       
      if (err.code === '23505') {
-        return Response.json({ error: 'That username is already taken.'}, { status: 409})
+        const existing = await sql`SELECT * FROM player WHERE user_name = ${body.user_name}`;
+        return Response.json(existing[0]);
       }
       throw err;
 
