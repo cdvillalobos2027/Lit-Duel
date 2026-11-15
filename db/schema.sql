@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS match (
     player1_score INTEGER NOT NULL DEFAULT 0,
     player2_score INTEGER NOT NULL DEFAULT 0,
     created_at TIMESTAMPTZ DEFAULT now(),
+    finished_at TIMESTAMPTZ,
     CHECK (player1_id <> player2_id)
 );
 

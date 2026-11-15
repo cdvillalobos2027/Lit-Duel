@@ -16,6 +16,12 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     }
     const match = matches[0];
 
+
+    if (match.finished_at) {
+        return Response.json({ error: 'Match already finished.'}, { status: 409});
+    }
+
+
     // 2. is this player in this match?
     if (body.player_id !== match.player1_id && body.player_id !== match.player2_id) {
         return Response.json({ error: 'Player is not in this match.'}, { status: 403});
